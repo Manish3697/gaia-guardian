@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from backend.ml.risk_calculator import calculate_risk
+from backend.data.weather_api import get_weather
 app = FastAPI()
 
 @app.get("/")
@@ -19,3 +20,9 @@ def risk():
         "risk_score":score,
         "status":"WARNING"
     }
+@app.get("/weather")
+def weather():
+
+    data = get_weather()
+
+    return data
